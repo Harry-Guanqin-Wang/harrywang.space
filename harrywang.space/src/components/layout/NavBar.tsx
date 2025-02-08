@@ -14,6 +14,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import SiteSymbol from "./SiteSymbol";
 
 interface NavBarComponents {
   title: string;
@@ -25,20 +26,17 @@ const aboutComponents: NavBarComponents[] = [
   {
     title: "About Me",
     href: "/",
-    description:
-      "fill this in later.",
+    description: "talk about experience, etc.",
   },
   {
     title: "About This Site",
     href: "/",
-    description:
-      "fill this in later.",
+    description: "fill this in later.",
   },
   {
     title: "Gallery",
     href: "/",
-    description:
-      "fill this in later.",
+    description: "fill this in later.",
   },
   {
     title: "Follow Me Around",
@@ -67,90 +65,97 @@ const portfolioComponents: NavBarComponents[] = [
 
 export default function NavBar() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        {/* Home Tab */}
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link href={"/"} className={navigationMenuTriggerStyle()}>
-              Home
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
+    <div className="w-full flex items-center justify-between p-3">
+      <div className="flex-1 pl-3">
+        <SiteSymbol />
+      </div>
+      <div>
+        <NavigationMenu>
+          <NavigationMenuList>
+            {/* Home Tab */}
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link href={"/"} className={navigationMenuTriggerStyle()}>
+                  Home
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
 
-        {/* Portfolio Tab */}
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Portfolio</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              {/* Left Canvas Display */}
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <Link
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
-                    </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
-                    </p>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              {/* Right List of Items */}
-              {portfolioComponents.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
+            {/* Portfolio Tab */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Portfolio</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  {/* Left Canvas Display */}
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                        href="/"
+                      >
+                        <div className="mb-2 mt-4 text-lg font-medium">
+                          shadcn/ui
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Beautifully designed components built with Radix UI
+                          and Tailwind CSS.
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  {/* Right List of Items */}
+                  {portfolioComponents.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
-        {/* About Tab */}
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>About</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {aboutComponents.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
+            {/* About Tab */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>About</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {aboutComponents.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
-        {/* Services Tab */}
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link href="/services" className={navigationMenuTriggerStyle()}>
-              Services
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
+            {/* Services Tab */}
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link href="/services" className={navigationMenuTriggerStyle()}>
+                  Services
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
 
-        {/* Blogs Tab */}
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link href="/blogs" className={navigationMenuTriggerStyle()}>
-              Blogs
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+            {/* Blogs Tab */}
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link href="/blogs" className={navigationMenuTriggerStyle()}>
+                  Blogs
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+    </div>
   );
 }
 
